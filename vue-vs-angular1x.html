@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="vue">
+   <h1 @click="show">{{msg}}</h1>
+</div>
+
+<div id="angular" ng-app="demo" ng-controller="one">
+    <h1 ng-click="show()">{{msg}}</h1>
+</div>
+
+
+<script src="bower_components/angular/angular.js" ></script>
+<script src="bower_components/vue/dist/vue.js"></script>
+
+<script>
+    (function () {
+
+        //vue 风格创建一个viewmodel //一个根viewmodel管理一个app.vue
+        let vm = new Vue({
+            el:"#vue",
+            data:{
+                msg:"hello vue"
+            },
+            methods:{
+                show(){
+                    alert("vue alert")
+                }
+            }
+        })
+
+
+        //angular风格的viewmodel angular1x mvvm
+        //view viewmodel view model
+        angular.module("demo",[])
+            .controller("one",function ($scope) {
+                $scope.msg = "hello  angular"
+                $scope.show = function () {
+                    alert("angular alert")
+                }
+            })
+
+    })()
+</script>
+</body>
+</html>
